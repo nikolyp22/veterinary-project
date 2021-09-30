@@ -1,14 +1,21 @@
-<?php
+<?php 
 
-$server = 'localhost:3307';
-$username = 'root';
-$password = '';
-$database = 'php_login_database';
-
-try {
-  $conn = new PDO("mysql:host=$server;dbname=$database;", $username, $password);
-} catch (PDOException $e) {
-  die('Connection Failed: ' . $e->getMessage());
+class Connection
+{
+    public static function connect(): PDO
+    {
+        try {
+            $connect = new PDO('mysql:host=localhost;dbname=db_veterinay', 'root', '2004', [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_EMULATE_PREPARES => false
+            ]);
+            $connect->exec("SET CHARACTER SET UTF8");
+            return $connect;
+        } catch (PDOException $e) {
+            die("MySQL connection error: " . $e->getMessage());
+        }
+    }
 }
+
 
 ?>
