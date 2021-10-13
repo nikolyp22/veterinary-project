@@ -2,6 +2,7 @@
 session_start();
 
 require 'database.php';
+$conn = Connection::connect();
 
 if (isset($_SESSION['user_id'])) {
     $records = $conn->prepare('SELECT id, name, email, password FROM users WHERE id = :id');

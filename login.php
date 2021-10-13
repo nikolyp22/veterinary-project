@@ -6,6 +6,7 @@ if (isset($_SESSION['user_id'])) {
     header('Location: /');
 }
 require 'database.php';
+$conn = Connection::connect();
 
 if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $records = $conn->prepare('SELECT id, name, email, password FROM users WHERE email = :email');
@@ -46,13 +47,36 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
         <p> <?= $message ?></p>
     <?php endif; ?>
 
-    <h1>Login</h1>
-
-    <form action="login.php" method="POST">
-        <input name="email" type="text" placeholder="Enter your email">
-        <input name="password" type="password" placeholder="Enter your Password">
-        <input type="submit" value="Submit">
-    </form>
+    <section class="signin-content">
+        <div class="container-sm mt-5">
+            <div class="row g-0">
+                <div class="col-lg-12 d-flex">
+                    <div class="justify-content-center align-self-center mx-auto">
+                        <form class="text-center border border-light p-5 bg-dark" action="login.php" method="POST">
+                            <p class="h4 mb-4">Iniciar sesión</p>
+                            <input type="email" name="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+                            <input type="password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+                            <div class="d-flex justify-content-around">
+                                <div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                                        <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="">Forgot password?</a>
+                                </div>
+                            </div>
+                            <button class="btn btn-info btn-block my-4" type="submit">Entrar</button>
+                            <p> No tiene una cuenta? 
+                                <a href="" data-toggle="modal" data-target="#modalRegisterForm">Registrarse</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <?php require_once('./partials/footer.php') ?>
 </body>

@@ -4,7 +4,7 @@
             <a data-activates="slide-out" class="mr-4" data-toggle="tooltip" title="Menú lateral">
                 <i class="fas fa-bars fa-lg"></i>
             </a>
-            <a href="/">
+            <a href="/veterinary-project/index.php">
                 <strong class="text-white">
                     <span class="h2 font-weight-bold">Numedas</span>
                 </strong>
@@ -49,8 +49,11 @@
                             <a href="logout.php"></a>
                         </span>
                     </div>
+                    <a href="/appointments/" class="btn btn-primary btn-sm">
+                        <i class="fas fa-book-medical"></i> Citas
+                    </a>
                 <?php else : ?>
-                    <a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalRegisterForm">
+                    <a href="login.php" class="btn btn-primary btn-sm" >
                         <i class="fas fa-sign-in-alt"></i> Iniciar sesión
                     </a>
                 <?php endif; ?>
@@ -72,7 +75,6 @@
                     <?php if (!empty($message)) : ?>
                         <p> <?= $message ?></p>
                     <?php endif; ?>
-                    <span>or <a href="login.php">Login</a></span>
                     <div class="md-form mb-5">
                         <i class="fas fa-user prefix grey-text"></i>
                         <input type="text" name="name" id="orangeForm-name" class="form-control validate">
