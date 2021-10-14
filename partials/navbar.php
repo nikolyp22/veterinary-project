@@ -4,7 +4,7 @@
             <a data-activates="slide-out" class="mr-4" data-toggle="tooltip" title="Menú lateral">
                 <i class="fas fa-bars fa-lg"></i>
             </a>
-            <a href="/">
+            <a href="/veterinary-project/index.php">
                 <strong class="text-white">
                     <span class="h2 font-weight-bold">Numedas</span>
                 </strong>
@@ -46,11 +46,14 @@
                         <span class="user mr-2" data-toggle="tooltip" title="Usuario">
                             <i class="fas fa-user"></i>
                             <span class="font-weight-bold"><?= $_SESSION['username']; ?></span>
-                            <a href="logout.php">Cerrar sesión</a>
+                            <a href="logout.php"></a>
                         </span>
                     </div>
+                    <a href="/appointments/" class="btn btn-primary btn-sm">
+                        <i class="fas fa-book-medical"></i> Citas
+                    </a>
                 <?php else : ?>
-                    <a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalRegisterForm">
+                    <a href="login.php" class="btn btn-primary btn-sm" >
                         <i class="fas fa-sign-in-alt"></i> Iniciar sesión
                     </a>
                 <?php endif; ?>
@@ -72,7 +75,10 @@
                     <?php if (!empty($message)) : ?>
                         <p> <?= $message ?></p>
                     <?php endif; ?>
+<<<<<<< HEAD
                     <span>or <a href="login.php">Login</a></span>
+=======
+>>>>>>> 2210a839fa8aa6cc721e98bd4ba136dabe9443c0
                     <div class="md-form mb-5">
                         <i class="fas fa-user prefix grey-text"></i>
                         <input type="text" name="name" id="orangeForm-name" class="form-control validate">
