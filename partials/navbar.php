@@ -42,18 +42,24 @@
             </div>
             <div class="navbar-nav ml-auto">
                 <?php if (!empty($_SESSION['username'])) : ?>
-                    <div class="navbar-text align-self-center">
-                        <span class="user mr-2" data-toggle="tooltip" title="Usuario">
-                            <i class="fas fa-user"></i>
-                            <span class="font-weight-bold"><?= $_SESSION['username']; ?></span>
-                            <a href="logout.php"></a>
-                        </span>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user">
+                                <span class="font-weight-bold"><?= $_SESSION['username']; ?></span>
+                            </i>
+                        </a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Registrar Mascota</a>
+                            <a class="dropdown-item" href="src/admin/dashboard.php">Admin</a>
+                            <a class="dropdown-item" href="logout.php">Logout</a>
+                        </div>
                     </div>
                     <a href="/appointments/" class="btn btn-primary btn-sm">
                         <i class="fas fa-book-medical"></i> Citas
                     </a>
                 <?php else : ?>
-                    <a href="login.php" class="btn btn-primary btn-sm" >
+                    <a href="login.php" class="btn btn-primary btn-sm">
                         <i class="fas fa-sign-in-alt"></i> Iniciar sesión
                     </a>
                 <?php endif; ?>
@@ -65,7 +71,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content bg-dark">
             <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+                <h4 class="modal-title w-100 font-weight-bold">Registrarse</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -75,10 +81,6 @@
                     <?php if (!empty($message)) : ?>
                         <p> <?= $message ?></p>
                     <?php endif; ?>
-<<<<<<< HEAD
-                    <span>or <a href="login.php">Login</a></span>
-=======
->>>>>>> 2210a839fa8aa6cc721e98bd4ba136dabe9443c0
                     <div class="md-form mb-5">
                         <i class="fas fa-user prefix grey-text"></i>
                         <input type="text" name="name" id="orangeForm-name" class="form-control validate">

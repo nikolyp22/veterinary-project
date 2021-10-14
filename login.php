@@ -19,7 +19,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
     if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
         $_SESSION['user_id'] = $results['id'];
         $_SESSION['username'] = $results['name'];
-        header("Location: /");
+        header("Location: /veterinary-project/index.php");
     } else {
         $message = 'Las credenciales de acceso son incorrectas';
     }
