@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS users(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     name CHAR(40) NOT NULL, 
@@ -24,6 +25,17 @@ CREATE TABLE IF NOT EXISTS pets(
     owner INT NULL
 );
 
-ALTER TABLE pets ADD FOREIGN KEY(owner) REFERENCES users(id);
+CREATE TABLE IF NOT EXISTS appointments(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status BOOLEAN NULL,
+    pet INT NULL,
+    service INT NULL,
+    total_value FLOAT NOT NULL
+);
 
-INSERT INTO users(name, lastName, email, password, role) VALUES('Nikol', 'Patiño', 'nikol@mail.com', '$2y$10$xmyMvEyMZkortGwvygsMAeine9UJ3plU7fwrQ/CRq.LesiKCBbf0e', 'moderador');
+ALTER TABLE pets ADD FOREIGN KEY(owner) REFERENCES users(id);
+ALTER TABLE appointments ADD FOREIGN KEY(pet);
+ALTER TABLE appointments ADD FOREIGN KEY(service) REFERENCES services(id);
+
+INSERT INTO users(name, email, password, role) VALUES('Nikol', 'Patiño', 'nikol@mail.com', '$2y$10$xmyMvEyMZkortGwvygsMAeine9UJ3plU7fwrQ/CRq.LesiKCBbf0e', 'moderador');

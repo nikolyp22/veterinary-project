@@ -57,7 +57,7 @@
                             <a class="dropdown-item" href="/veterinary-project/logout.php">Logout</a>
                         </div>
                     </div>
-                    <a href="/appointments/" class="btn btn-primary btn-sm">
+                    <a href="/appointments/" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#takeAppointment">
                         <i class="fas fa-book-medical"></i> Citas
                     </a>
                 <?php else : ?>
@@ -69,7 +69,9 @@
         </div>
     </div>
 </nav>
+
 <?php include_once('message.php'); ?>
+
 <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content bg-dark">
@@ -142,6 +144,57 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <button class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="takeAppointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Agendar Cita</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <form action="take_appointment.php" method="POST">
+                    <div class="md-form mb-4">
+                        <select name="service" class="browser-default custom-select">
+                            <option default> Selecciona un servicio</option>
+                            <?php
+                            $get_services = $conn->prepare("SELECT id, name, value FROM services");
+                            $get_services->execute();
+                            $services = $get_services->fetchAll(PDO::FETCH_OBJ);
+                            foreach ($services as $service) {
+                            ?>
+                                <option value="<?php echo $service->id; ?>"><?php echo $service->name; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="md-form mb-4">
+                        <select name="pet" class="browser-default custom-select">
+                            <option default> Selecciona tu mascota</option>
+                            <?php
+                            $get_pet = $conn->prepare("SELECT id, name FROM pets WHERE owner = :owner");
+                            $get_pet->bindParam(':owner', $_SESSION['user_id']);
+                            $get_pet->execute();
+                            $pets = $get_pet->fetchAll(PDO::FETCH_OBJ);
+                            foreach ($pets as $pet) {
+                            ?>
+                                <option value="<?php echo $pet->id; ?>"><?php echo $pet->name; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <!--<div class="md-form mb-4">
+                        <i class="fas fa-dollar-sign prefix text-white"></i>
+                        <input type="number" name="total_value" id="orangeForm-pass" value="<?php echo $services; ?>" class="form-control validate disabled" disabled>
+                        <label data-error="wrong" data-success="right" for="orangeForm-pass"><?php echo $services->value; ?></label>
+                    </div>-->
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button class="btn btn-primary">Guardar Cita</button>
                     </div>
                 </form>
             </div>
