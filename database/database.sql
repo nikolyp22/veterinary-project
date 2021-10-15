@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS users(
 CREATE TABLE IF NOT EXISTS services(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name CHAR(60) NOT NULL,
+    image VARCHAR(250) NULL,
     description VARCHAR(250) NOT NULL,
     value FLOAT NOT NULL 
 );
@@ -24,3 +25,5 @@ CREATE TABLE IF NOT EXISTS pets(
 );
 
 ALTER TABLE pets ADD FOREIGN KEY(owner) REFERENCES users(id);
+
+INSERT INTO users(name, lastName, email, password, role) VALUES('Nikol', 'Patiño', 'nikol@mail.com', '$2y$10$xmyMvEyMZkortGwvygsMAeine9UJ3plU7fwrQ/CRq.LesiKCBbf0e', 'moderador');

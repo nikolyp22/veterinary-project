@@ -5,5 +5,5 @@
 
   session_destroy();
 
-  header('Location: /');
+  header('Location: /veterinary-project/index.php');
 ?>

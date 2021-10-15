@@ -1,8 +1,6 @@
 <?php
 
 require 'database.php';
-
-$message = '';
 $conn = Connection::connect();
 
 if (!empty($_POST['email']) && !empty($_POST['password'])) {
@@ -14,10 +12,15 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $stmt->bindParam(':password', $password);
 
     if ($stmt->execute()) {
-        $message = 'Successfully created new user';
-        header('Location: /veterinary-project');
+        $_SESSION['message'] = 'Hemos creado su usuario, ahora debe iniciar sesión';
+        $_SESSION['message_category'] = 'Correcto';
+        $_SESSION['message_type'] = 'success';
+        header('Location: /veterinary-project/login.php');
     } else {
-        $message = 'Sorry there must have been an issue creating your account';
+        $_SESSION['message'] = 'Ocurrió un error registrando su usuario';
+        $_SESSION['message_category'] = 'Error';
+        $_SESSION['message_type'] = 'warning';
+        header("Location: /veterinary-project/index.php");
     }
 }
 ?>

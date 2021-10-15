@@ -5,7 +5,7 @@ class Connection
     public static function connect(): PDO
     {
         try {
-            $connect = new PDO('mysql:host=localhost;dbname=db_veterinay', 'root', '2004', [
+            $connect = new PDO('mysql:host=localhost;dbname=db_veterinary;port=3310;', 'root', '', [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_EMULATE_PREPARES => false
             ]);

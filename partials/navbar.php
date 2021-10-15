@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbar">
             <div class="navbar-nav ml-auto">
                 <div class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/veterinary-project/index.php" class="nav-link">
                         <i class="fas fa-home"></i>
                         Inicio
                     </a>
@@ -34,7 +34,7 @@
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/veterinary-project/services.php" class="nav-link">
                         <i class="fas fa-comment-dollar"></i>
                         Servicios
                     </a>
@@ -50,9 +50,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Registrar Mascota</a>
-                            <a class="dropdown-item" href="src/admin/dashboard.php">Admin</a>
-                            <a class="dropdown-item" href="logout.php">Logout</a>
+                            <a class="dropdown-item" href="" data-toggle="modal" data-target="#modalRegisterPet">Registrar Mascota</a>
+                            <?php if ($_SESSION['role'] == 'moderador') { ?>
+                                <a class="dropdown-item" href="/veterinary-project/src/admin/dashboard.php">Admin</a>
+                            <?php } ?>
+                            <a class="dropdown-item" href="/veterinary-project/logout.php">Logout</a>
                         </div>
                     </div>
                     <a href="/appointments/" class="btn btn-primary btn-sm">
@@ -67,6 +69,7 @@
         </div>
     </div>
 </nav>
+<?php include_once('message.php'); ?>
 <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content bg-dark">
@@ -78,9 +81,6 @@
             </div>
             <div class="modal-body mx-3">
                 <form action="signup.php" method="POST">
-                    <?php if (!empty($message)) : ?>
-                        <p> <?= $message ?></p>
-                    <?php endif; ?>
                     <div class="md-form mb-5">
                         <i class="fas fa-user prefix grey-text"></i>
                         <input type="text" name="name" id="orangeForm-name" class="form-control validate">
@@ -103,6 +103,45 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <button class="btn btn-deep-orange">Registrarse</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalRegisterPet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Registrar Mascota</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <form action="register_pet.php" method="POST">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-paw prefix text-white"></i>
+                        <input type="text" name="name" id="orangeForm-name" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="orangeForm-name">Nombre</label>
+                    </div>
+                    <div class="md-form mb-5">
+                        <i class="fas fa-palette prefix text-white"></i>
+                        <input type="text" name="breed" id="orangeForm-email" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="orangeForm-email">Raza</label>
+                    </div>
+                    <div class="md-form mb-4">
+                        <i class="fas fa-spider prefix text-white"></i>
+                        <input type="text" name="specie" id="orangeForm-pass" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="orangeForm-pass">Especie</label>
+                    </div>
+                    <div class="md-form mb-4">
+                        <i class="fas fa-sort-numeric-up-alt prefix text-white"></i>
+                        <input type="number" name="age" id="orangeForm-pass" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="orangeForm-pass">Edad</label>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button class="btn btn-primary">Enviar</button>
                     </div>
                 </form>
             </div>
