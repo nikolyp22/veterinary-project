@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS appointments(
 );
 
 ALTER TABLE pets ADD FOREIGN KEY(owner) REFERENCES users(id);
-ALTER TABLE appointments ADD FOREIGN KEY(pet);
+ALTER TABLE appointments ADD FOREIGN KEY(pet) REFERENCES pets(id);
 ALTER TABLE appointments ADD FOREIGN KEY(service) REFERENCES services(id);
 
-INSERT INTO users(name, email, password, role) VALUES('Nikol', 'Patiño', 'nikol@mail.com', '$2y$10$xmyMvEyMZkortGwvygsMAeine9UJ3plU7fwrQ/CRq.LesiKCBbf0e', 'moderador');
+INSERT INTO users(name, lastName, email, password, role) VALUES('Nikol', 'Patiño', 'nikol@mail.com', '$2y$10$xmyMvEyMZkortGwvygsMAeine9UJ3plU7fwrQ/CRq.LesiKCBbf0e', 'moderador');

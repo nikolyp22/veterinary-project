@@ -13,7 +13,7 @@ $service = $_POST['service'];
 $pet = $_POST['pet'];
 
 if (!empty($service || $pet)) {
-    $save_appointment = $conn->prepare("INSERT INTO appointment (service, pet) VALUES (:service, :pet)");
+    $save_appointment = $conn->prepare("INSERT INTO appointments (service, pet) VALUES (:service, :pet)");
     $save_appointment->bindParam(':service', $service);
     $save_appointment->bindParam(':pet', $pet);
     if ($save_appointment->execute()) {

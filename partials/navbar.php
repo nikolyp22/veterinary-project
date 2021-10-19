@@ -121,7 +121,7 @@
                 </button>
             </div>
             <div class="modal-body mx-3">
-                <form action="register_pet.php" method="POST">
+                <form action="/veterinary-project/register_pet.php" method="POST">
                     <div class="md-form mb-5">
                         <i class="fas fa-paw prefix text-white"></i>
                         <input type="text" name="name" id="orangeForm-name" class="form-control validate">
@@ -160,7 +160,7 @@
                 </button>
             </div>
             <div class="modal-body mx-3">
-                <form action="take_appointment.php" method="POST">
+                <form action="/veterinary-project/take_appointment.php" method="POST">
                     <div class="md-form mb-4">
                         <select name="service" class="browser-default custom-select">
                             <option default> Selecciona un servicio</option>
